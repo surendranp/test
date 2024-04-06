@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Image Gallery</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    /* Center aligning gallery items */
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 80%;
+}
+
+.gallery-item {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 200px;
+  height: auto;
+}
+
+/* Lightbox styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  text-align: center;
+}
+
+.lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+/* gallery-copyed */
+.grid-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-auto-flow: dense;
+}
+.grid-container .item {
+  background:#8FF;
+  display:flex;
+}
+.grid-container .item a {
+  display:flex;
+  width:100%;
+}
+.grid-container .item.portrait {
+  grid-row: auto / span 2;
+}
+.grid-container .item img {
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
+
+
+/* CSS ne servant qu'à la décoration, inutile pour le fonctionnement */
+
+.grid-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-auto-flow: dense;
+}
+.grid-container .item {
+  background:#8FF;
+  display:flex;
+}
+.grid-container .item a {
+  display:flex;
+  width:100%;
+}
+.grid-container .item.portrait {
+  grid-row: auto / span 2;
+}
+.grid-container .item img {
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
+
+
+/* CSS ne servant qu'à la décoration, inutile pour le fonctionnement */
+
+.filter-buttons {
+  padding:1rem;
+  text-align:center;
+}
+.filter-buttons button {
+  background:#ccc;
+  border:none;
+  font-size:1rem;
+  padding:.5rem 1rem;
+  margin-bottom:.5rem;
+}
+.filter-buttons button:focus {
+  outline:none;
+  background:#eee;
+}
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="./assets/LOGO.jpg" alt="Logo" width="auto" height="40">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="About.html" >About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./Servicecs.html" >Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="gallery.html" >Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Contact.html" >Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+<h2>hellow</h2>
+
+<!-- gallery -->
+<!-- <div class="gallery-container">
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="image1.jpg" alt="Image 1">
+      </div>
+      <div class="gallery-item">
+        <img src="./assets/Banner - 1.jpg" alt="Image 2">
+      </div>
+      Add more gallery items for additional images -->
+      <!-- Repeat this pattern for all 20 images -->
+    <!-- </div>
+  </div>
+  
+  <div class="lightbox">
+    <span class="close-btn">&times;</span>
+    <div class="lightbox-content">
+      <img src="" alt="lightbox image">
+    </div>
+  </div>
+
+</div> --> 
+
+<div class="filter-buttons">
+  <button type="button" data-filter="all">All</button>
+  <button type="button" data-filter=".branding">Branding</button>
+  <button type="button" data-filter=".illustration">Illustration</button>
+  <button type="button" data-filter=".packaging">Packaging</button>
+  <button type="button" data-filter=".photography">Photography</button>
+</div>
+
+<div class="grid-container filter-container">
+  <div class="item mix packaging">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/999977/ffffff?text=packaging">
+      </a>
+  </div>
+  <div class="item mix branding">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/779999/ffffff?text=branding">
+      </a>
+  </div>
+  <div class="item portrait mix packaging">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/330x480/999977/ffffff?text=packaging">
+      </a>
+  </div>
+  <div class="item mix illustration">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/997799/ffffff?text=illustration">
+      </a>
+  </div>
+  <div class="item mix photography">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/779977/ffffff?text=photography">
+      </a>
+  </div>
+  <div class="item portrait mix branding">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/330x480/779999/ffffff?text=branding">
+      </a>
+  </div>
+  <div class="item mix packaging">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/999977/ffffff?text=packaging">
+      </a>
+  </div>
+  <div class="item portrait mix photography">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/330x480/779977/ffffff?text=photography">
+      </a>
+  </div>
+  <div class="item mix branding">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/779999/ffffff?text=branding">
+      </a>
+  </div>
+  <div class="item mix photography">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/779977/ffffff?text=photography">
+      </a>
+  </div>
+  <div class="item mix packaging">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/999977/ffffff?text=packaging">
+      </a>
+  </div>
+  <div class="item mix packaging">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/999977/ffffff?text=packaging">
+      </a>
+  </div>
+  <div class="item mix illustration">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/997799/ffffff?text=illustration">
+      </a>
+  </div>
+  <div class="item mix branding">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/779999/ffffff?text=branding">
+      </a>
+  </div>
+  <div class="item portrait mix photography">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/330x480/779977/ffffff?text=photography">
+      </a>
+  </div>
+  <div class="item portrait mix packaging">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/330x480/999977/ffffff?text=packaging">
+      </a>
+  </div>
+  <div class="item mix illustration">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/997799/ffffff?text=illustration">
+      </a>
+  </div>
+  <div class="item portrait mix photography">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/330x480/779977/ffffff?text=photography">
+      </a>
+  </div>
+  <div class="item mix packaging">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/999977/ffffff?text=packaging">
+      </a>
+  </div>
+  <div class="item portrait mix branding">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/330x480/779999/ffffff?text=branding">
+      </a>
+  </div>
+  <div class="item mix photography">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/779977/ffffff?text=photography">
+      </a>
+  </div>
+  <div class="item mix packaging">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/480x330/999977/ffffff?text=packaging">
+      </a>
+  </div>
+  <div class="item portrait mix branding">
+      <a href="https://via.placeholder.com/800x600?text=magrandeimage.jpg" data-lightbox="lightbox" data-title="Légende de l'image">
+          <img src="https://via.placeholder.com/330x480/779999/ffffff?text=branding">
+      </a>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+const navlikEls=document.querySelectorAll('.nav-link');
+        const windowpathname=window.location.pathname;
+        navlikEls.forEach(navlikEls => {
+            const navlinkPathname=new URL(navlikEls.href).pathname;
+            if((windowpathname === navlinkPathname) || (windowpathname === '/index.html' && navlinkPathname === '/')  ){
+                navlikEls.classList.add('active');
+            }
+        });
+        // galleryh
+  //       document.addEventListener("DOMContentLoaded", function() {
+  // const galleryItems = document.querySelectorAll(".gallery-item img");
+  // const lightbox = document.querySelector(".lightbox");
+  // const lightboxImage = document.querySelector(".lightbox img");
+  // const closeBtn = document.querySelector(".close-btn");
+
+  // Add click event listener to each gallery item
+  // galleryItems.forEach(function(item) {
+  //   item.addEventListener("click", function() {
+  //     lightbox.style.display = "flex";
+  //     lightboxImage.src = item.src;
+  //     setTimeout(() => {
+  //       lightbox.style.opacity = 1;
+  //     }, 100);
+  //   });
+  // });
+
+  // Close lightbox on close button click
+  // closeBtn.addEventListener("click", function() {
+  //   lightbox.style.opacity = 0;
+  //   setTimeout(() => {
+  //     lightbox.style.display = "none";
+  //   }, 200);
+  // });
+
+  // Close lightbox when clicking outside the lightbox content
+//   lightbox.addEventListener("click", function(e) {
+//     if (e.target === lightbox) {
+//       lightbox.style.opacity = 0;
+//       setTimeout(() => {
+//         lightbox.style.display = "none";
+//       }, 200);
+//     }
+//   });
+// });
+
+var mixer = mixitup('.filter-container');
+</script>
+</body>
+</html>
